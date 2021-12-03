@@ -14,10 +14,11 @@ public:
   int reusableCellCount(int type) override;
   void willDisplayCellForIndex(HighlightCell * cell, int index) override;
 private:
-  constexpr static int k_totalNumberOfCell = 2;
+  constexpr static int k_totalNumberOfCell = 3;
   PreferencesController m_preferencesController;
-  MessageTableCellWithChevronAndMessage m_chevronCell;
-  MessageTableCellWithSwitch m_switchCell;
+  MessageTableCellWithChevronAndMessage m_chevronCellFontSize;
+  MessageTableCellWithSwitch m_switchCellAutoCompletion;
+  MessageTableCellWithSwitch m_switchCellSyntaxHighlighting;
 };
 
 }

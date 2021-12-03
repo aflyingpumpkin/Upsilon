@@ -10,8 +10,9 @@ CodeOptionsController::CodeOptionsController(Responder * parentResponder) :
   GenericSubController(parentResponder),
   m_preferencesController(this)
 {
-  m_chevronCell.setMessageFont(KDFont::LargeFont);
-  m_switchCell.setMessageFont(KDFont::LargeFont);
+  m_chevronCellFontSize.setMessageFont(KDFont::LargeFont);
+  m_switchCellAutoCompletion.setMessageFont(KDFont::LargeFont);
+  m_switchCellSyntaxHighlighting.setMessageFont(KDFont::LargeFont);
 }
 
 bool CodeOptionsController::handleEvent(Ion::Events::Event event) {
@@ -20,8 +21,11 @@ bool CodeOptionsController::handleEvent(Ion::Events::Event event) {
       case 1:
         GlobalPreferences::sharedGlobalPreferences()->setAutocomplete(!GlobalPreferences::sharedGlobalPreferences()->autocomplete());
         m_selectableTableView.reloadCellAtLocation(m_selectableTableView.selectedColumn(), m_selectableTableView.selectedRow());
+        break;      
+      case 2:
+        GlobalPreferences::sharedGlobalPreferences()->setSyntaxhighlighting(!GlobalPreferences::sharedGlobalPreferences()->syntaxhighlighting());
+        m_selectableTableView.reloadCellAtLocation(m_selectableTableView.selectedColumn(), m_selectableTableView.selectedRow());
         break;
-
       default:
         GenericSubController * subController = nullptr;
         subController = &m_preferencesController;
@@ -41,9 +45,12 @@ HighlightCell * CodeOptionsController::reusableCell(int index, int type) {
   assert(type == 0);
   assert(index >= 0 && index < k_totalNumberOfCell);
   if (index == 0) {
-    return &m_chevronCell;
+    return &m_chevronCellFontSize;
   }
-  return &m_switchCell;
+  else if (index == 1) {
+    return &m_switchCellAutoCompletion;
+  }
+  return &m_switchCellSyntaxHighlighting;
 }
 
 int CodeOptionsController::reusableCellCount(int type) {
@@ -67,6 +74,11 @@ void CodeOptionsController::willDisplayCellForIndex(HighlightCell * cell, int in
     MessageTableCellWithSwitch * mySwitchCell = (MessageTableCellWithSwitch *)cell;
     SwitchView * mySwitch = (SwitchView *)mySwitchCell->accessoryView();
     mySwitch->setState(GlobalPreferences::sharedGlobalPreferences()->autocomplete());
+  }
+  else if (thisLabel == I18n::Message::SyntaxHighlighting) {
+    MessageTableCellWithSwitch * mySwitchCell = (MessageTableCellWithSwitch *)cell;
+    SwitchView * mySwitch = (SwitchView *)mySwitchCell->accessoryView();
+    mySwitch->setState(GlobalPreferences::sharedGlobalPreferences()->syntaxhighlighting());
   }
 #endif
 }
