@@ -176,8 +176,8 @@ SECTIONS {
     *(.text._ZN20KDPostProcessContext15setClippingRectE6KDRect)
     *(.text._ZNK6KDFont17indexForCodePointE9CodePoint)
     *(.text._ZNK6KDFont26fetchGrayscaleGlyphAtIndexEhPh)
-    *(.text.LZ4_decompress_safe)
-    *(.text.LZ4_wildCopy)
+    *(.text.LZ4_decompress_safe*)
+    *(.text.LZ4_wildCopy*)
     *(.text.*DFU*)
     *(.text.*isEnumerated*)
     *(.text._ZN3Ion3USB6enableEv)
@@ -190,7 +190,6 @@ SECTIONS {
     *(.text._ZN3Ion6Device9Backlight*)
     *(.text._ZN3Ion9Backlight*)
 
-    /* Rodata Truc Relou */
     *(.text._ZNK10Statistics5Store6medianEi)
     *(.text._ZNK10Regression5Store12meanOfColumnEiib)
     *(.text._ZNK6Shared15DoublePairStore11sumOfColumnEiib)
@@ -214,6 +213,7 @@ SECTIONS {
     *(.text._ZNK10Statistics5Store33sortedElementAtCumulatedFrequencyEidb)
     *(.text.round)
     *(.text._ZNK10Statistics5Store8minIndexEPdi*)
+    *(.text.LZ4_decompress_safe*)
 
     /* 'standby' dependencies '*/
     *(.text._ZN3Ion6Device5Power20internalFlashStandbyEv)
@@ -243,6 +243,7 @@ SECTIONS {
     *(.rodata._ZL12KDColorWhite*)
     *(.rodata._ZL10KDColorRed*)
     *(.rodata._ZL12KDColorBlack*)
+    *(.rodata._ZN4CodeL15BackgroundColorE*)
     *(.rodata._ZN3Ion6Device3SWD6ConfigL4PinsE)
     *(.rodata._ZN3Ion6Device7Display6ConfigL8FSMCPinsE)
     *(.rodata._ZZN3Ion6Device7Display9initPanelEvE11calibration)
@@ -277,6 +278,12 @@ SECTIONS {
     *(.rodata._ZN8Sequence23TypeParameterController25willDisplayCellAtLocationEP13HighlightCellii*)
     *(.rodata._ZN6KDFont16privateSmallFontE)
     *(.rodata._ZN4I18nL23CountryPreferencesArrayE)
+    *(.rodata._ZN3Ion6Device3LED6ConfigL7RGBPinsE*)
+    *(.rodata._ZN4I18nL23CountryPreferencesArrayE*)
+    *(.rodata._ZN3Ion6Device3USB6ConfigL7VbusPinE*)
+    *(.rodata.bp*)
+    *(.rodata.dp_l*)
+    *(.rodata.dp_h*)
     *(.rodata.abort_sleeping.str1.1)
     *(.rodata.abort_core.str1.1)
     *(.rodata.dfu_bootloader)
@@ -314,7 +321,7 @@ SECTIONS {
     /* The data section is written to Flash but linked as if it were in RAM.
      *
      * This is required because its initial value matters (so it has to be in
-     * persistant memory in the first place), but it is a R/W area of memory
+     * persistent memory in the first place), but it is a R/W area of memory
      * so it will have to live in RAM upon execution (in linker lingo, that
      * translates to the data section having a LMA in Flash and a VMA in RAM).
      *
