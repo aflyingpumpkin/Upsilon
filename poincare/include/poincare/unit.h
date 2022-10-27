@@ -601,6 +601,7 @@ public:
   static constexpr const EnergyRepresentative k_energyRepresentatives[] = {
     EnergyRepresentative("J", 1., Prefixable::All, Prefixable::LongScale),
     EnergyRepresentative("eV", 1.602176634e-19, Prefixable::All, Prefixable::LongScale),
+    EnergyRepresentative("cal", 4.184, Prefixable::All, Prefixable::LongScale),
   };
   typedef UnitNode::PowerRepresentative PowerRepresentative;
   static constexpr const PowerRepresentative k_powerRepresentatives[] = { PowerRepresentative("W", 1., Prefixable::All, Prefixable::LongScale) };
@@ -684,6 +685,8 @@ public:
   static_assert(strings_equal(k_energyRepresentatives[k_jouleRepresentativeIndex].m_rootSymbol, "J"), "Index for the Joule Representative is incorrect.");
   static constexpr int k_electronVoltRepresentativeIndex = 1;
   static_assert(strings_equal(k_energyRepresentatives[k_electronVoltRepresentativeIndex].m_rootSymbol, "eV"), "Index for the Electron Volt Representative is incorrect.");
+  static constexpr int k_calorieRepresentativeIndex = 2;
+  static_assert(strings_equal(k_energyRepresentatives[k_calorieRepresentativeIndex].m_rootSymbol, "cal"), "Index for the Calorie Representative is incorrect.");
   static constexpr int k_wattRepresentativeIndex = 0;
   static_assert(strings_equal(k_powerRepresentatives[k_wattRepresentativeIndex].m_rootSymbol, "W"), "Index for the Watt Representative is incorrect.");
   static constexpr int k_hectareRepresentativeIndex = 0;

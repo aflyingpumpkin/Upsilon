@@ -62,6 +62,7 @@ constexpr const int
   Unit::k_celsiusRepresentativeIndex,
   Unit::k_fahrenheitRepresentativeIndex,
   Unit::k_jouleRepresentativeIndex,
+  Unit::k_calorieRepresentativeIndex,
   Unit::k_electronVoltRepresentativeIndex,
   Unit::k_wattRepresentativeIndex,
   Unit::k_hectareRepresentativeIndex,
@@ -555,6 +556,11 @@ int UnitNode::EnergyRepresentative::setAdditionalExpressions(double value, Expre
   dest[index++] = Multiplication::Builder(
       Float<double>::Builder(adjustedValue * std::pow(10., -eVPrefix->exponent())),
       Unit::Builder(eV, eVPrefix));
+  return index;
+  /* 3. Convert into Calorie */
+  const Representative * calorie = representativesOfSameDimension() + Unit::k_calorieRepresentativeIndex;
+  const Prefix * caloriePrefix = calorie->findBestPrefix(value, 1.);
+  dest[index++] = Multiplication::Builder(Float<double>::Builder(value * std::pow(10., -caloriePrefix->exponent())), Unit::Builder(calorie, caloriePrefix));
   return index;
 }
 

@@ -244,6 +244,11 @@ const ToolboxMessageTree unitEnergyJouleChildren[] = {
   ToolboxMessageTree::Leaf(I18n::Message::UnitEnergyJouleSymbol, I18n::Message::UnitEnergyJoule),
   ToolboxMessageTree::Leaf(I18n::Message::UnitEnergyJouleKiloSymbol, I18n::Message::UnitEnergyJouleKilo),
 };
+const ToolboxMessageTree unitEnergyCalorieChildren[] = {
+  ToolboxMessageTree::Leaf(I18n::Message::UnitEnergyCalorieMilliSymbol, I18n::Message::UnitEnergyCalorieMilli),
+  ToolboxMessageTree::Leaf(I18n::Message::UnitEnergyCalorieSymbol, I18n::Message::UnitEnergyCalorie),
+  ToolboxMessageTree::Leaf(I18n::Message::UnitEnergyCalorieKiloSymbol, I18n::Message::UnitEnergyCalorieKilo),
+};
 const ToolboxMessageTree unitEnergyElectronVoltChildren[] = {
   ToolboxMessageTree::Leaf(I18n::Message::UnitEnergyElectronVoltMilliSymbol, I18n::Message::UnitEnergyElectronVoltMilli),
   ToolboxMessageTree::Leaf(I18n::Message::UnitEnergyElectronVoltSymbol, I18n::Message::UnitEnergyElectronVolt),
@@ -252,6 +257,7 @@ const ToolboxMessageTree unitEnergyElectronVoltChildren[] = {
 };
 const ToolboxMessageTree unitEnergyChildren[] = {
   ToolboxMessageTree::Node(I18n::Message::UnitEnergyJouleMenu, unitEnergyJouleChildren),
+  ToolboxMessageTree::Node(I18n::Message::UnitEnergyCalorieMenu, unitEnergyCalorieChildren),
   ToolboxMessageTree::Node(I18n::Message::UnitEnergyElectronVoltMenu, unitEnergyElectronVoltChildren)};
 
 const ToolboxMessageTree unitPowerWattChildren[] = {
