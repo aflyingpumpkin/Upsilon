@@ -600,6 +600,7 @@ public:
   typedef UnitNode::EnergyRepresentative EnergyRepresentative;
   static constexpr const EnergyRepresentative k_energyRepresentatives[] = {
     EnergyRepresentative("J", 1., Prefixable::All, Prefixable::LongScale),
+    EnergyRepresentative("cal", 4.184, Prefixable::All, Prefixable::LongScale),
     EnergyRepresentative("eV", 1.602176634e-19, Prefixable::All, Prefixable::LongScale),
   };
   typedef UnitNode::PowerRepresentative PowerRepresentative;
